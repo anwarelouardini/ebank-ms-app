@@ -86,10 +86,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>dev.anwarelouardini</groupId>
-            <artifactId>customer-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
