@@ -1,6 +1,6 @@
 package dev.anwarelouardini.ebankservice.entities;
 
-import dev.anwarelouardini.customerservice.entities.Customer;
+import dev.anwarelouardini.ebankservice.model.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 
