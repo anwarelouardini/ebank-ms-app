@@ -5,7 +5,9 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.tool.ToolCallbackProvider;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EbankAIAgent {
     // Pour communiquer avec n'importe quelle LLM
     private ChatClient chatClient;
