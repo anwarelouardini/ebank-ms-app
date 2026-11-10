@@ -3,6 +3,8 @@ package dev.anwarelouardini.ebankservice.service;
 import dev.anwarelouardini.ebankservice.entities.BankAccount;
 import dev.anwarelouardini.ebankservice.feign.CustomerRestClient;
 import dev.anwarelouardini.ebankservice.repository.BankAccountRepository;
+import org.springframework.ai.mcp.annotation.McpTool;
+import org.springframework.ai.mcp.annotation.McpToolParam;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,17 +21,20 @@ public class BankAccountService {
         this.customerRestClient = customerRestClient;
     }
 
+    @McpTool(description = "Get all bank accounts")
     public List<BankAccount> findAll() {
         return bankAccountRepository.findAll();
     }
 
-    public BankAccount findById(String id) {
+    @McpTool(description = "Get bank account by id")
+    public BankAccount findById(@McpToolParam(description = "The bank account by id") String id) {
         BankAccount bankAccount = bankAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("Bank account with id " + id + " not found"));
         bankAccount.setCustomer(customerRestClient.getCustomerById(bankAccount.getCustomerId()));
         return bankAccount;
     }
 
-    public BankAccount save(BankAccount bankAccount) {
+    @McpTool(description = "Save a new bank account")
+    public BankAccount save(@McpToolParam(description = "The bank account to save (name, email)") BankAccount bankAccount) {
         try {
             bankAccount.setId(UUID.randomUUID().toString());
             bankAccount.setCreatedAt(new Date());
