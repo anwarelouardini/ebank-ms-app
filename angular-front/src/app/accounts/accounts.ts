@@ -5,6 +5,7 @@ import {catchError, Observable} from 'rxjs';
 import {Account, AccountListState, RequestStatus} from '../model/account.model';
 import {map} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {LoadingService} from '../services/loading';
 
 @Component({
   imports: [
@@ -16,6 +17,7 @@ import {of} from 'rxjs';
 })
 export class Accounts {
   private http = inject(HttpClient);
+  public loadService = inject(LoadingService);
   // Lorsqu'on fait le nom de variable suivi par un "$" c-a-d que c'est un objet de type observable
   accounts$ : Observable<AccountListState> = this.http.get<Account[]>
   ("http://localhost:9999/EBANK-SERVICE/accounts").pipe(
@@ -30,4 +32,5 @@ export class Accounts {
     })
   );
   protected readonly RequestStatus = RequestStatus;
+  protected readonly LoadingService = LoadingService;
 }
