@@ -1,19 +1,17 @@
-import {Accounts} from '../accounts/accounts';
-
-export class Account {
+export interface Account {
   id?: string;
-  createdAt?: Date;
   balance?: number;
+  createdAt?: string;
   type?: string;
   customerId?: number;
 }
 
 export enum RequestStatus {
-  SUCCESS = 0, ERROR = 1
+  SUCCESS, ERROR
 }
 
 export interface AccountListState {
-  accounts?: Accounts[];
-  status?: RequestStatus;
-  errorMessage?: string;
+  accounts?: Account[],
+  status?: RequestStatus,
+  errorMessage?: string
 }
