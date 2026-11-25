@@ -14,26 +14,7 @@ Application bancaire basée sur une **architecture microservices** (Spring Boot 
 
 ## 🧩 Architecture
 
-```
-                    ┌────────────────────┐
-                    │   angular-front    │  :4200
-                    └─────────┬──────────┘
-                              │ HTTP
-                    ┌─────────▼──────────┐
-                    │  gateway-service   │  :9999
-                    └─────────┬──────────┘
-          ┌───────────────────┼────────────────────┐
-┌─────────▼────────┐ ┌────────▼─────────┐ ┌────────▼─────────┐
-│ customer-service │ │  ebank-service   │ │    ebank-bot     │
-│      :9000       │ │      :9001       │ │      :9002       │
-│  H2 + MCP server │ │ H2 + MCP server  │ │ Spring AI client │
-└──────────────────┘ └────────┬─────────┘ └───┬──────────┘───┘
-          ▲   OpenFeign       │               │ MCP (streamable HTTP)
-          └───────────────────┘               ▼
-                                       OpenAI · Discord · Telegram
-
-            discovery-service (Eureka) :8761 — enregistrement de tous les services
-```
+![Architecture Ebank MS App](docs/architecture.png)
 
 | Module | Port | Rôle |
 |---|---|---|
